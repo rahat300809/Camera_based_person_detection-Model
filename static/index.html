@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biometric AI Face Recognition & Training Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2"/>
+                        <circle cx="12" cy="10" r="3"/>
+                        <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h2>KBY-AI Vision</h2>
+                    <span>Biometric ID Platform</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="live">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="23 7 16 12 23 17 23 7"/>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                    </svg>
+                    <span>Live Scanner</span>
+                </button>
+                <button class="nav-item" data-tab="photo">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span>Photo Query</span>
+                </button>
+                <button class="nav-item" data-tab="database">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <span>Trained Database</span>
+                    <span class="badge" id="persons-badge-count">0</span>
+                </button>
+                <button class="nav-item highlight" data-tab="enroll">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <line x1="20" y1="8" x2="20" y2="14"/>
+                        <line x1="17" y1="11" x2="23" y2="11"/>
+                    </svg>
+                    <span>Train New Person</span>
+                </button>
+                <button class="nav-item" data-tab="settings">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                    <span>Settings & Thresholds</span>
+                </button>
+            </nav>
+
+            <div class="system-status-card">
+                <div class="status-indicator online"></div>
+                <div class="status-info">
+                    <span class="status-title">System Active</span>
+                    <span class="status-desc" id="engine-info">YuNet + SFace 128D</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content View Container -->
+        <main class="main-content">
+
+            <!-- TAB 1: LIVE SCANNER -->
+            <section id="tab-live" class="tab-pane active">
+                <header class="pane-header">
+                    <div>
+                        <h1>Real-Time Face Recognition</h1>
+                        <p>Live camera feedback with automated feature extraction & identification matching</p>
+                    </div>
+                    <div class="header-actions">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="audio-toggle" checked>
+                            <span class="slider"></span>
+                            <span class="toggle-label">Match Sound</span>
+                        </label>
+                        <button class="btn btn-primary" id="btn-toggle-camera">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="23 7 16 12 23 17 23 7"/>
+                                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                            </svg>
+                            <span id="cam-btn-text">Start Camera</span>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="live-grid">
+                    <!-- Video Canvas Viewport -->
+                    <div class="viewport-card">
+                        <div class="video-container">
+                            <video id="webcam-video" autoplay playsinline muted></video>
+                            <canvas id="overlay-canvas"></canvas>
+
+                            <!-- Cyber HUD Overlays -->
+                            <div class="hud-scanner-line" id="scanner-line"></div>
+                            <div class="hud-corner top-left"></div>
+                            <div class="hud-corner top-right"></div>
+                            <div class="hud-corner bottom-left"></div>
+                            <div class="hud-corner bottom-right"></div>
+
+                            <div class="hud-watermark">
+                                <span class="dot-live"></span> REAL-TIME RECOGNITION ACTIVE
+                            </div>
+
+                            <div class="hud-fps" id="hud-fps-counter">FPS: 0</div>
+                        </div>
+
+                        <div class="viewport-controls">
+                            <button class="btn btn-secondary btn-sm" id="btn-snap-register">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                                Snap & Train Current Face
+                            </button>
+                            <div class="metrics-pill">
+                                <span>Threshold: <strong id="current-thresh-display">0.363</strong></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Detection Sidebar HUD -->
+                    <div class="sidebar-hud">
+                        <div class="card card-glass">
+                            <h3 class="card-title">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                                Target Identification
+                            </h3>
+                            <div id="target-details-container" class="target-card-empty">
+                                <div class="pulse-ring"></div>
+                                <p>Scanning video feed for faces...</p>
+                            </div>
+                        </div>
+
+                        <div class="card card-glass">
+                            <h3 class="card-title">Recent Matches Log</h3>
+                            <ul class="match-log-list" id="match-log-list">
+                                <li class="log-item empty">No match detections recorded yet</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: PHOTO QUERY -->
+            <section id="tab-photo" class="tab-pane">
+                <header class="pane-header">
+                    <div>
+                        <h1>Photo Identification & Analysis</h1>
+                        <p>Upload any image to detect all faces, extract vectors, and match identities</p>
+                    </div>
+                </header>
+
+                <div class="photo-query-grid">
+                    <div class="card card-glass">
+                        <div class="dropzone" id="photo-dropzone">
+                            <input type="file" id="photo-file-input" accept="image/*" hidden>
+                            <div class="dropzone-content">
+                                <div class="upload-icon">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="17 8 12 3 7 8"/>
+                                        <line x1="12" y1="3" x2="12" y2="15"/>
+                                    </svg>
+                                </div>
+                                <h3>Drag & Drop Photo Here</h3>
+                                <p>or click to browse from device (JPG, PNG, WEBP)</p>
+                                <button class="btn btn-secondary mt-2">Select Image</button>
+                            </div>
+                        </div>
+
+                        <div id="photo-result-preview" class="photo-result-container hidden">
+                            <img id="photo-annotated-img" alt="Analyzed photo">
+                        </div>
+                    </div>
+
+                    <div class="card card-glass">
+                        <h3 class="card-title">Detection Breakdown</h3>
+                        <div id="photo-analysis-results" class="analysis-results-list">
+                            <div class="empty-state">
+                                <p>Upload an image to view detailed facial vector analysis & identity matches.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: TRAINED DATABASE -->
+            <section id="tab-database" class="tab-pane">
+                <header class="pane-header">
+                    <div>
+                        <h1>Trained Person Database</h1>
+                        <p>Manage enrolled person profiles and multi-shot training embeddings</p>
+                    </div>
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            <input type="text" id="db-search-input" placeholder="Search person by name or role...">
+                        </div>
+                        <button class="btn btn-primary" id="btn-nav-to-enroll">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            Enroll New Face
+                        </button>
+                    </div>
+                </header>
+
+                <div class="persons-grid" id="persons-cards-grid">
+                    <!-- Persons injected via JS -->
+                </div>
+            </section>
+
+            <!-- TAB 4: ENROLL NEW PERSON -->
+            <section id="tab-enroll" class="tab-pane">
+                <header class="pane-header">
+                    <div>
+                        <h1>Train & Enroll Person Model</h1>
+                        <p>Extract facial geometry & generate 128D embedding vectors for custom face detection</p>
+                    </div>
+                </header>
+
+                <div class="enroll-layout">
+                    <!-- Source Selection Card -->
+                    <div class="card card-glass">
+                        <div class="tab-subnav">
+                            <button class="subnav-btn active" id="mode-webcam-btn">📷 Webcam Snap</button>
+                            <button class="subnav-btn" id="mode-upload-btn">📁 File Upload</button>
+                        </div>
+
+                        <!-- Webcam capture area -->
+                        <div id="enroll-webcam-box" class="enroll-video-section">
+                            <div class="enroll-capture-box">
+                                <video id="enroll-video" autoplay playsinline muted></video>
+                                <canvas id="enroll-canvas" class="hidden"></canvas>
+                            </div>
+                            <button type="button" class="btn btn-primary w-full mt-3" id="btn-snap-enroll">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                                Capture Face Frame
+                            </button>
+                        </div>
+
+                        <!-- File upload area -->
+                        <div id="enroll-file-box" class="enroll-file-section hidden">
+                            <div class="enroll-capture-box">
+                                <input type="file" id="enroll-file-input" accept="image/*" hidden>
+                                <div class="file-pick-area" id="enroll-file-trigger">
+                                    <svg width="40" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                    <span>Click to choose training photo</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="face-preview-card mt-4">
+                            <h4>Facial Alignment Preview</h4>
+                            <div class="preview-img-wrapper">
+                                <img id="enroll-preview-img" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='%23111827'/></svg>" alt="Preview">
+                                <div class="landmark-overlay-info" id="preview-landmark-tag">No Image Loaded</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Details Form -->
+                    <div class="card card-glass">
+                        <h3 class="card-title">Person Metadata & Model Attributes</h3>
+                        <form id="enroll-form" class="form-layout">
+                            <div class="form-group">
+                                <label for="enroll-name">Full Name *</label>
+                                <input type="text" id="enroll-name" placeholder="e.g. Elon Musk, John Doe" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="enroll-role">Role / Category</label>
+                                <select id="enroll-role">
+                                    <option value="VIP">VIP Executive</option>
+                                    <option value="Employee" selected>Employee / Staff</option>
+                                    <option value="Authorized">Authorized Person</option>
+                                    <option value="Guest">Guest / Visitor</option>
+                                    <option value="Security">Security Personnel</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="enroll-notes">Notes / Attributes</label>
+                                <textarea id="enroll-notes" rows="4" placeholder="Additional details, ID number, clearance level..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg w-full mt-4" id="btn-save-enroll">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                                Train Embedding & Save Profile
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: SETTINGS & THRESHOLDS -->
+            <section id="tab-settings" class="tab-pane">
+                <header class="pane-header">
+                    <div>
+                        <h1>System Settings & Hyperparameters</h1>
+                        <p>Configure face recognition distance metrics and threshold sensitivity</p>
+                    </div>
+                </header>
+
+                <div class="settings-grid">
+                    <div class="card card-glass">
+                        <h3 class="card-title">Cosine Similarity Threshold</h3>
+                        <p class="text-sub">SFace feature embedding cosine score required to register a verified identity match.</p>
+
+                        <div class="slider-box">
+                            <div class="slider-header">
+                                <span>Similarity Threshold: <strong id="thresh-val-text">0.363</strong></span>
+                                <span class="badge badge-accent" id="thresh-level-tag">Recommended (0.363)</span>
+                            </div>
+                            <input type="range" id="input-cosine-thresh" min="0.1" max="0.8" step="0.01" value="0.363">
+                            <div class="slider-labels">
+                                <span>0.10 (Permissive)</span>
+                                <span>0.363 (SFace Default)</span>
+                                <span>0.80 (Strict)</span>
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <h3 class="card-title mt-4">Detection Score Threshold</h3>
+                        <p class="text-sub">YuNet confidence threshold for bounding box detection.</p>
+                        <div class="slider-box">
+                            <div class="slider-header">
+                                <span>Min Detection Confidence: <strong id="det-conf-val-text">0.50</strong></span>
+                            </div>
+                            <input type="range" id="input-det-conf" min="0.1" max="0.9" step="0.05" value="0.50">
+                        </div>
+                    </div>
+
+                    <div class="card card-glass">
+                        <h3 class="card-title">Database Backup & Portability</h3>
+                        <p class="text-sub">Export registered person profiles & 128D embeddings as JSON or import backup data.</p>
+
+                        <div class="flex-row gap-3 mt-4">
+                            <button class="btn btn-secondary flex-1" id="btn-export-db">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Export Database JSON
+                            </button>
+                            <button class="btn btn-secondary flex-1" id="btn-import-db-trigger">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                Import Database JSON
+                            </button>
+                            <input type="file" id="import-db-file" accept=".json" hidden>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container"></div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
